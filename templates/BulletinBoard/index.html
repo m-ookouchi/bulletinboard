@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+
+{% block header_message %}
+    <header style='background-color:aqua'>
+        <h1 align='center'>川田・岡ノ山 掲示板</h1>
+        <h3 align='center'>町内会活動情報を掲載しています。</h3>
+        <h5 align='center'>当ページに関するお問い合わせは、川田　大河内正博まで。</h5>
+    </header>
+{% endblock %}
+
+{% block main_contents %}
+    <div class='container'>
+        <h2 align='center'>今後の予定</h2>
+        {% if eventlist %}
+        <h4 align='center'>直近の{{ eventlist.count }}件を表示しています。</h4>
+        <table class="table table-striped" align='center' border='1' >
+            <thead>
+                <tr>
+                    <th>行事名</th>
+                    <th>場所</th>
+                    <th>日付</th>
+                    <th>時刻</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in eventlist %}
+                <tr>
+                    <td scope="row">{{ event.event_name }}</td>
+                    <td>{{ event.place }}</td>
+                    <td>{{ event.schedule_daytime | date:'Y年n月j日' }}</td>
+                    <td>{{ event.schedule_daytime | date:'G:i' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p align='center'>年度行事一覧は<a href={% url 'EventSchedule:AllEventSchedule' %}>こちら</a>。</p>
+        {% else %}
+        <p align='center'>予定された行事はありません</p>
+        {% endif %}
+    </div>
+    <hr>
+    <div>
+        <h1 align='center'>資料</h1>
+        {% if documentlist %}
+        <h4 align='center'>直近の{{ documentlist.count }}件を表示しています。</h4>
+        <table class="table" align='center'>
+            <thead>
+                <tr>
+                    <th>資料名</th>
+                    <th>掲載日</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for document in documentlist %}
+                <tr>
+                    <td scope="row">{{ document.document_name }}</td>
+                    <td>{{ document.upload_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p align='center'>掲載資料はありません。</p>
+        {% endif %}
+    </div>
+    <hr>
+    <div>
+        <h1 align='center'>回覧状況</h1>
+        {% if circulatinglist %}
+        <p>
+            <h4 align='center'>直近の{{ documentlist.count }}件を表示しています。</h4>
+        </p>
+        <table class="table" align='center'>
+            <thead>
+                <tr>
+                    <th>タイトル</th>
+                    <th>開始日</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for board in circulatinglist %}
+                <tr>
+                    <td scope="row">{{ board.title }}</td>
+                    <td>{{ board.start_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p align='center'>現在回覧中の回覧板はありません。</p>
+        {% endif %}
+        <p align='center'>過去の回覧は<a href={% url 'CirculationBoard:AllCirculationBoard' %}>こちら</a>。</p>
+    </div>
+{% endblock %}

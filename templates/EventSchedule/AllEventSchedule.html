@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+
+{% block header_message %}
+<header style='background-color:aqua'>
+    <h1 align='center'>小島町／川田・岡ノ山　行事一覧</h1>
+    <h3 align='center'></h3>
+</header>
+{% endblock %}
+
+{% block main_contents %}
+<table class="table table-striped" align='center' border='1' >
+    <thead>
+        <tr>
+            <th>行事名</th>
+            <th>場所</th>
+            <th>日付</th>
+            <th>時刻</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in eventlist %}
+        <tr>
+            <td scope="row">{{ event.event_name }}</td>
+            <td>{{ event.place }}</td>
+            <td>{{ event.schedule_daytime | date:'Y年n月j日' }}</td>
+            <td>{{ event.schedule_daytime | date:'G:i' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div align='center'>
+    <a href={% url 'index' %}>戻る</a>
+</div>
+{% endblock %}

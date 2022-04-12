@@ -1,0 +1,22 @@
+{% block eventSchedule %}
+<table class="table table-striped" align='center' border='1' >
+    <thead>
+        <tr>
+            <th>行事名</th>
+            <th>場所</th>
+            <th>日付</th>
+            <th>時刻</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in eventlist %}
+        <tr>
+            <td scope="row">{{ event.event_name }}</td>
+            <td>{{ event.place }}</td>
+            <td>{{ event.schedule_daytime | date:'Y年n月j日' }}</td>
+            <td>{{ event.schedule_daytime | date:'G:i' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
