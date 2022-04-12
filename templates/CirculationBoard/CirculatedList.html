@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+
+{% block header_message %}
+<header style='background-color:aqua'>
+    <h1 align='center'>川田・岡ノ山　回覧状況</h1>
+    <h3 align='center'></h3>
+</header>
+{% endblock %}
+
+{% block main_contents %}
+<table class="table table-striped" align='center' border='1' >
+    <thead>
+        <tr>
+            <th>タイトル</th>
+            <th>開始日</th>
+            <th>終了日</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for board in circulationlist %}
+        <tr>
+            <td scope="row">{{ board.title }}</td>
+            <td>{{ board.start_date | date:'Y年n月j日' }}</td>
+            <td>{{ board.end_date | date:'Y年n月j日' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div align='center'>
+    <a href={% url 'index' %}>戻る</a>
+</div>
+{% endblock %}

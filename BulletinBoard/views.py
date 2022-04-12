@@ -24,7 +24,7 @@ def index(request):
     documentlist = Document.objects.filter(upload_date__gt=today).order_by('upload_date')[:5]
 
     # Get circuration board (most recent 5)
-    circulatinglist = Circulationboard.objects.filter(end_date__isnull=True).order_by('start_date')
+    circulatinglist = Circulationboard.objects.filter(end_date__isnull=True).order_by('start_date')[:5]
 
     # Rendering page
     context = {
