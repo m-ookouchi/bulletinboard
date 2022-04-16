@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 
-{% extends 'base.html' %}
+{% extends 'base_bulletinboard.html' %}
 
 {% block header_message %}
-<header style='background-color:aqua'>
-    <h1 align='center'>小島町／川田・岡ノ山　行事一覧</h1>
-    <h3 align='center'></h3>
+<header>
+    <p class='text-center fs-3 fw-bold'>小島町／川田・岡ノ山　行事一覧</p>
+    <p class='text-center'></p>
 </header>
 {% endblock %}
 
 {% block main_contents %}
-<table class="table table-striped" align='center' border='1' >
+<table class='table table-striped text-center table-bordered'>
     <thead>
         <tr>
             <th>行事名</th>
@@ -22,7 +22,7 @@
     <tbody>
         {% for event in eventlist %}
         <tr>
-            <td scope="row">{{ event.event_name }}</td>
+            <td scope="row"><a href="{% url 'EventSchedule:EventDetail' event.id %}">{{ event.event_name }}</a></td>
             <td>{{ event.place }}</td>
             <td>{{ event.schedule_daytime | date:'Y年n月j日' }}</td>
             <td>{{ event.schedule_daytime | date:'G:i' }}</td>
@@ -31,7 +31,7 @@
     </tbody>
 </table>
 
-<div align='center'>
+<div class='text-center'>
     <a href={% url 'index' %}>戻る</a>
 </div>
 {% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base_bulletinboard.html" %}
+
+{% block header_message %}
+    <header style='background-color:aqua' class='text-center'>
+        <p class='fs-1 fw-bold'>{{ object }}</p>
+    </header>
+{% endblock %}
+
+{% block main_contents %}
+    <div class='text-center'>
+        <p class='fs-3 fw-bold'>日時</p>
+        <p class='fs-4'>{{ object.schedule_daytime }}</p>
+    </div>
+    <br>
+    <div class='text-center'>
+        <p class='fs-3 fw-bold'>場所</p>
+        <p class='fs-4'>{{ object.place }}</p>
+    </div>
+    <br>
+    <div class='text-center'>
+        <p class='fs-3 fw-bold'>詳細</p>
+        <div class='text-left'>
+            {% for line in detail_info %}
+            <p class='fs-4'>{{ line }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

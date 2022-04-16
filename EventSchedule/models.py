@@ -2,7 +2,7 @@ from django.db import models
 
 class EventSchedule(models.Model):
     # イベント名
-    event_name = models.CharField('Eevnt Name', max_length=100)
+    event_name = models.CharField('Event Name', max_length=100)
     # 場所(集合場所)
     place = models.CharField('Place', max_length=100)
     # 対象者
@@ -17,3 +17,6 @@ class EventSchedule(models.Model):
     implementation_datetime = models.DateTimeField('Implemantation', null=True, blank=True)
     # 備考
     remarks = models.TextField('Remark', max_length=1000, null=True, blank=True)
+
+    def __str__(self):
+        return self.event_name

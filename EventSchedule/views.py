@@ -1,8 +1,9 @@
 import datetime
 
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
+from django.views.generic import DetailView
 
 from .models import EventSchedule
 
@@ -15,3 +16,18 @@ def AllEventSchedule(request):
         "eventlist": eventlist,
     }
     return render(request, "EventSchedule/AllEventSchedule.html", context)
+
+#def detail(request, event_id):
+#    event = get_object_or_404(EventSchedule, pk=event_id)
+#    return render(request, 'EventSchedule/eventdetail.html', { 'event':event })
+
+class DetailView(DetailView):
+    model = EventSchedule
+    template_name = 'EventSchedule/eventdetail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        detail_data = context.get("object")
+        detail_data = str(detail_data.detail_info).splitlines()
+        context["detail_info"] = detail_data
+        return context

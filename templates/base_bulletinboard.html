@@ -15,15 +15,19 @@
     <title>川田・岡ノ山 掲示板</title>
 </head>
     <body>
+        <div class='container bg-primary bg-gradient text-white'>
         {% block header_message %}
         {% endblock %}
+        </div>
 
+        <div class=container>
         {% block main_contents %}
         {% endblock %}
+        </div>
 
-        <footer style='background-color:gray' align='right'>
-            <div>Maintenance by Masahiro Ookouchi.</div>
-            <div>Powered by Python3, Django4, Bootstrap5.</div>
+        <footer style='background-color:gray'>
+            <p class='text-end'>Maintenance by Masahiro Ookouchi.</p>
+            <p class='text-end'>Powered by Python3, Django4, Bootstrap5.</p>
         </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

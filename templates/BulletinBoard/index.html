@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 
-{% extends 'base.html' %}
+{% extends 'base_bulletinboard.html' %}
 
 {% block header_message %}
-    <header style='background-color:aqua'>
-        <h1 align='center'>川田・岡ノ山 掲示板</h1>
-        <h3 align='center'>町内会活動情報を掲載しています。</h3>
-        <h5 align='center'>当ページに関するお問い合わせは、川田　大河内正博まで。</h5>
+    <header>
+        <p class='fs-1 fw-bold text-center'>川田・岡ノ山 掲示板</p>
+        <p class='fs-3 text-center'>町内会活動情報を掲載しています。</p>
+        <p class='fs-5 text-center'>当ページに関するお問い合わせは、川田　大河内正博まで。</p>
     </header>
 {% endblock %}
 
 {% block main_contents %}
+    <hr>
     <div class='container'>
-        <h2 align='center'>今後の予定</h2>
+        <p class='fs-2 fw-bold text-center'>今後の予定</h2>
         {% if eventlist %}
-        <h4 align='center'>直近の{{ eventlist.count }}件を表示しています。</h4>
-        <table class="table table-striped" align='center' border='1' >
+        <p class='fs-4 text-center'>直近の{{ eventlist.count|add:1 }}件を表示しています。</p>
+        <table class='table table-striped table-bordered text-center'>
             <thead>
                 <tr>
                     <th>行事名</th>
@@ -25,9 +26,15 @@
                 </tr>
             </thead>
             <tbody>
+                <tr class='table-primary'>
+                    <td scope="row"><a href={% url "EventSchedule:EventDetail" firstevent.id %}>{{ firstevent.event_name }}</a></td>
+                    <td>{{ firstevent.place }}</td>
+                    <td>{{ firstevent.schedule_daytime | date:'Y年n月j日' }}</td>
+                    <td>{{ firstevent.schedule_daytime | date:'G:i' }}</td>
+                </tr>
                 {% for event in eventlist %}
                 <tr>
-                    <td scope="row">{{ event.event_name }}</td>
+                    <td scope="row"><a href="{% url 'EventSchedule:EventDetail' event.id %}">{{ event.event_name }}</a></td>
                     <td>{{ event.place }}</td>
                     <td>{{ event.schedule_daytime | date:'Y年n月j日' }}</td>
                     <td>{{ event.schedule_daytime | date:'G:i' }}</td>
@@ -35,17 +42,17 @@
                 {% endfor %}
             </tbody>
         </table>
-        <p align='center'>年度行事一覧は<a href={% url 'EventSchedule:AllEventSchedule' %}>こちら</a>。</p>
+        <p class='fs-5 text-center'>年度行事一覧は<a href={% url 'EventSchedule:AllEventSchedule' %}>こちら</a>。</p>
         {% else %}
-        <p align='center'>予定された行事はありません</p>
+        <p class='fs-4 text-center'>予定された行事はありません</p>
         {% endif %}
     </div>
     <hr>
-    <div>
-        <h1 align='center'>資料</h1>
+    <div class='container'>
+        <p class='fs-2 fw-bold text-center'>資料</p>
         {% if documentlist %}
-        <h4 align='center'>直近の{{ documentlist.count }}件を表示しています。</h4>
-        <table class="table" align='center'>
+        <p class='fs-4 text-center'>直近の{{ documentlist.count }}件を表示しています。</p>
+        <table class='table table-striped table-bordered text-center'>
             <thead>
                 <tr>
                     <th>資料名</th>
@@ -62,17 +69,15 @@
             </tbody>
         </table>
         {% else %}
-        <p align='center'>掲載資料はありません。</p>
+        <p class='fs-4 text-center'>掲載資料はありません。</p>
         {% endif %}
     </div>
     <hr>
-    <div>
-        <h1 align='center'>回覧状況</h1>
+    <div class='container'>
+        <p class='fs-2 fw-bold text-center'>回覧状況</h1>
         {% if circulatinglist %}
-        <p>
-            <h4 align='center'>直近の{{ documentlist.count }}件を表示しています。</h4>
-        </p>
-        <table class="table" align='center'>
+        <p class='fs-4 text-center'>直近の{{ documentlist.count }}件を表示しています。</p>
+        <table class="table table-striped table-bordered text-center">
             <thead>
                 <tr>
                     <th>タイトル</th>
@@ -89,8 +94,8 @@
             </tbody>
         </table>
         {% else %}
-        <p align='center'>現在回覧中の回覧板はありません。</p>
+        <p class='fs-4 text-center'>現在回覧中の回覧板はありません。</p>
         {% endif %}
-        <p align='center'>過去の回覧は<a href={% url 'CirculationBoard:AllCirculationBoard' %}>こちら</a>。</p>
+        <p class='fs-4 text-center'>過去の回覧は<a href={% url 'CirculationBoard:AllCirculationBoard' %}>こちら</a>。</p>
     </div>
 {% endblock %}
