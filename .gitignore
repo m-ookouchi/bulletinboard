@@ -1,2 +1,1 @@
-BulletinBoard\__pycache__
-EventSchedule\__pycache__
+*.pyc

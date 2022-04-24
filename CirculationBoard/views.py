@@ -14,5 +14,5 @@ def AllCirculationBoard(request):
     context = {
         'circulationlist':circulationlist,
     }
-    return render(request, 'CirculationBoard/Circulatedlist.html', context)
+    return render(request, 'CirculationBoard/CirculatedList.html', context)
     
