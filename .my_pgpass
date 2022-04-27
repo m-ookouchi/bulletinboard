@@ -1,1 +1,2 @@
-localhost:5432:django_db:django_app:django
+# hostname:port:db_name:username:password
+localhost:5432:django_db:djangoapp:django

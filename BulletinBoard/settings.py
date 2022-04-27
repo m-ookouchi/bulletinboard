@@ -80,14 +80,14 @@ WSGI_APPLICATION = 'BulletinBoard.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'postgresql': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'OPTIONS': {
             'service': 'django_db_service',
             'passfile': '.my_pgpass',
         },
     },
-    'default': {
+    'sqlite3': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
