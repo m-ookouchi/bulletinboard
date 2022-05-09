@@ -1,25 +1,21 @@
 import datetime
 
-from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 from django.views.generic import DetailView
 
 from .models import EventSchedule
 
-def AllEventSchedule(request):
-    # HTTP respoce test.
-    #return HttpResponse("All Event Schedule")
-    next_year_first_day = datetime.datetime(2023,4,1, tzinfo=timezone.utc)
-    eventlist = EventSchedule.objects.filter(schedule_daytime__lt=next_year_first_day).order_by('schedule_daytime')
+
+def all_event_schedule(request):
+    next_year_first_day = datetime.datetime(2023, 4, 1, tzinfo=timezone.utc)
+    eventlist = EventSchedule.objects.filter(
+        schedule_daytime__lt=next_year_first_day).order_by('schedule_daytime')
     context = {
         "eventlist": eventlist,
     }
     return render(request, "EventSchedule/AllEventSchedule.html", context)
 
-#def detail(request, event_id):
-#    event = get_object_or_404(EventSchedule, pk=event_id)
-#    return render(request, 'EventSchedule/eventdetail.html', { 'event':event })
 
 class DetailView(DetailView):
     model = EventSchedule
