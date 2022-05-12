@@ -21,4 +21,4 @@ venv/
 ENV/
 
 # PostgreSQL password file
-.my_pass
+.my_pgpass
