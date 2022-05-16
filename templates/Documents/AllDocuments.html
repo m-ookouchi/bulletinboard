@@ -20,7 +20,7 @@
     <tbody>
         {% for document in documentlist %}
         <tr>
-            <td scope="row"><a href='{{ MEDIA_URL }}{{ document.document_file.name }}'>{{ document.document_name }}</a></td>
+            <td scope="row"><a href={% url 'Documents:DocumentDetail' document.id %}>{{ document.document_name }}</a></td>
             <td>{{ document.upload_date | date:'Y年n月j日' }}</td>
         </tr>
         {% endfor %}

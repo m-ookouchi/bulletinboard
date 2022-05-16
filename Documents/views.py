@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.utils import timezone
+from django.views.generic import DetailView
 
 from .models import Document
 
@@ -14,3 +15,8 @@ def all_document_list(request):
         'documentlist': document_list,
     }
     return render(request, 'Documents/AllDocuments.html', context)
+
+
+class DocumentDetailView(DetailView):
+    model = Document
+    template_name = 'Documents/DocumentDetail.html'

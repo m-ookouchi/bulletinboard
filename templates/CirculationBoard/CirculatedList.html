@@ -21,7 +21,7 @@
     <tbody>
         {% for board in circulationlist %}
         <tr>
-            <td scope="row">{{ board.title }}</td>
+            <td scope="row"><a href="{% url 'CirculationBoard:CirculationBoardDetail' board.id %}">{{ board.title }}</a></td>
             <td>{{ board.start_date | date:'Y年n月j日' }}</td>
             <td>{{ board.end_date | date:'Y年n月j日' }}</td>
         </tr>
