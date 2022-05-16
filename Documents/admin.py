@@ -3,7 +3,7 @@ from .models import Document
 
 
 class DocumentAdmin(admin.ModelAdmin):
-    list_display = ('document_name', 'upload_date', 'document_file')
+    list_display = ('document_name', 'upload_date', 'document_file', 'circulation_board')
 
     def get_queryset(self, request):
         queryset = super(DocumentAdmin, self).get_queryset(request)

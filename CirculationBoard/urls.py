@@ -9,4 +9,9 @@ urlpatterns = [
         views.all_circulation_board,
         name='AllCirculationBoard'
     ),
+    path(
+        '<int:pk>/',
+        views.CirculationBoardDetailView.as_view(),
+        name="CirculationBoardDetail"
+    ),
 ]

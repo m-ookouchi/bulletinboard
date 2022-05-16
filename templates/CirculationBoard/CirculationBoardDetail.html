@@ -1,0 +1,28 @@
+{% extends "base_bulletinboard.html" %}
+
+{% block header_message %}
+    <header class='text-center'>
+        <p class='fs-1 fw-bold'>{{ object }}</p>
+    </header>
+{% endblock %}
+
+{% block main_contents %}
+    <div class='text-center'>
+        <p class='fs-3 fw-bold'>開始日</p>
+        <p class='fs-4'>{{ object.start_date }}</p>
+    </div>
+    <br>
+    <div class='text-center'>
+        <p class='fs-3 fw-bold'>終了日</p>
+        <p class='fs-4'>{{ object.end_date }}</p>
+    </div>
+    <br>
+    <div class='row justify-align-center'>
+        <p class='fs-3 fw-bold text-center'>資料一覧</p>
+        <ul class='list-group'>
+            {% for document in document_list %}
+            <li class='list-group-item fs-4 text-center'><a href='{{ MEDIA_URL}}{{document.document_file.name }}'>{{ document }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

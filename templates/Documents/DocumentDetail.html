@@ -1,0 +1,29 @@
+{% extends "base_bulletinboard.html" %}
+
+{% block header_message %}
+    <header class='text-center'>
+        <p class='fs-1 fw-bold'>{{ object }}</p>
+    </header>
+{% endblock %}
+
+{% block main_contents %}
+    <div class='text-center'>
+        <p class='fs-3 fw-bold'>掲載日</p>
+        <p class='fs-4'>{{ object.upload_date }}</p>
+    </div>
+    <br>
+    <div class='text-center'>
+        <p class='fs-3 fw-bold'>ファイル</p>
+        <p class='fs-4'><a href='{{ MEDIA_URL }}{{ object.document_file.name }}'>{{ object.file_name_only }}</a></p>
+    </div>
+    <br>
+    <div class='text-center'>
+        <p class='fs-3 fw-bold'>備考</p>
+        <p class='fs-4'>{{ object.remarks_text }}</p>
+    </div>
+    <br>
+    <div class='text-center'>
+        <p class='fs-3 fw-bold'>回覧板</p>
+        <p class='fs-4'>{{ object.circulation_board.title }}</p>
+    </div>
+{% endblock %}

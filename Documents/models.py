@@ -1,3 +1,4 @@
+import os
 from django.db import models
 from django.core.validators import FileExtensionValidator
 
@@ -35,3 +36,8 @@ class Document(models.Model):
 
     def __str__(self):
         return self.document_name
+
+    def file_name_only(self):
+        name = os.path.basename(self.document_file.name)
+        name = os.path.splitext(name)[0]
+        return name

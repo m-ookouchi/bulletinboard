@@ -19,7 +19,7 @@ def all_event_schedule(request):
 
 class DetailView(DetailView):
     model = EventSchedule
-    template_name = 'EventSchedule/eventdetail.html'
+    template_name = 'EventSchedule/EventDetail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
