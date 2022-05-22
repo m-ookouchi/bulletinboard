@@ -21,7 +21,7 @@
         <p class='fs-3 fw-bold text-center'>資料一覧</p>
         <ul class='list-group'>
             {% for document in document_list %}
-            <li class='list-group-item fs-4 text-center'><a href='{{ MEDIA_URL}}{{document.document_file.name }}'>{{ document }}</a></li>
+            <li class='list-group-item fs-4 text-center'><a href='{% url "Documents:DocumentDetail" document.id %}'>{{ document }}</a></li>
             {% endfor %}
         </ul>
     </div>
